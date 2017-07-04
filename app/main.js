@@ -28,6 +28,10 @@ if (electronConfig.URL_LAUNCHER_TOUCH_SIMULATE) {
   app.commandLine.appendSwitch('--simulate-touch-screen-with-mouse');
 }
 
+if (electronConfig.URL_LAUNCHER_DEBUG) {
+  app.commandLine.appendSwitch('remote-debugging-port', '9222');
+}
+
 if (process.env.NODE_ENV === 'development') {
   console.log('Running in development mode');
   Object.assign(electronConfig, {
@@ -66,7 +70,7 @@ app.on('ready', () => {
   // if the env-var is set to true,
   // a portion of the screen will be dedicated to the chrome-dev-tools
   if (electronConfig.URL_LAUNCHER_CONSOLE) {
-    window.openDevTools();
+    window.webContents.openDevTools();
   }
 
   // the big red button, here we go

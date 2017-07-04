@@ -1,11 +1,14 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:6
+FROM resin/%%RESIN_MACHINE_NAME%%-debian:stretch
 
 # Install other apt deps
 RUN apt-get update && apt-get install -y \
+  curl \
+  systemd \
   xserver-xorg-core \
-  xserver-xorg-input-all \
+  xserver-xorg-input-libinput \
   xserver-xorg-video-fbdev \
   xorg \
+  xinput \
   libdbus-1-dev \
   libgtk2.0-dev \
   libnotify-dev \
@@ -20,7 +23,7 @@ RUN apt-get update && apt-get install -y \
   libsmbclient \
   libssh-4 \
   fbset \
-  libexpat-dev && rm -rf /var/lib/apt/lists/*
+  libexpat-dev && curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
 
 # Set Xorg  preferences
 RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
