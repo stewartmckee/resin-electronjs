@@ -19,7 +19,7 @@
     "js"
   ],
   "dependencies": {
-    "electron": "^1.4.15",
+    "electron": "1.7.8",
     "electron-rebuild": "^1.5.7"
   },
   "author": "Carlo Maria Curinga",
